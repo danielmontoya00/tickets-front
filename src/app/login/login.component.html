@@ -1,0 +1,16 @@
+<div class="form-container">
+    <div class="form-btn">
+        <span>Iniciar Sesion</span>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input type="email" name="" formControlName="identifier" placeholder="Email">
+        <input type="password" name="" formControlName="password" placeholder="Contraseña">
+        <input type="submit" nombre="" class="btn" name="Iniciar Sesion" placeholder="Iniciar Sesion" >
+    </form>
+</div>
+
+<footer>
+<div class="footer" style="position: fixed; bottom: 0;">
+    <p style="text-align: center;">Ingenieria de Software 2021 © </p>
+</div>
+</footer>

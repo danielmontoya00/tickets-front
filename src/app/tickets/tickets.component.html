@@ -1,0 +1,41 @@
+<div class="row" >
+    <div class="col-2" style="margin: 0; padding: 0; height: 100vh; background-color: #797C95; ">
+       <app-nav-bar></app-nav-bar>
+    </div>
+    <div class="col-10" style="background-color: #E6E6E6; ">
+        <div class="row" style="width: 95%; margin: auto;">
+            <span style="padding: 1em 0 0 0;">LISTA DE TAREAS</span>
+        </div>
+        <div class="row" style="width: 95%; margin: auto;" >
+            <a style="text-align: right; font-size: small; padding: 0;" >+Agregar Ticket</a>
+            <hr >
+        </div>
+        <div class="row" style="width: 95%; margin: auto;">
+            <input placeholder="Buscar Tareas" >
+        </div>
+
+
+        <div class="row" style="width: 95%; margin: auto;">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-4">Categoria</th>
+                    <th scope="col" class="col-4">Descripcion</th>
+                    <th scope="col" class="col-2">Estado</th>
+                    <th scope="col" class="col-1" style="text-align: center;">Modificar</th>
+                    <th scope="col" class="col-1" style="text-align: center;">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr *ngFor="let ticket of tickets">
+                    <td>{{ ticket.categoria.nombre }}</td>
+                    <td>{{ ticket.descripcion }}</td>
+                    <td>{{ ticket.estado }}</td>
+                    <td style="text-align: center;"><a href="#" ><i class="fa fa-pencil"></i></a></td>
+                    <td style="text-align: center;"> <a href="#" ><i class="fa fa-trash"></i></a></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
