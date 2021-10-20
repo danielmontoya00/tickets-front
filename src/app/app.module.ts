@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { EffectsArray } from './store/effects';
+import { PrintErrorComponent } from './print-error/print-error.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { EffectsArray } from './store/effects';
     ReportesComponent,
     TicketsComponent,
     EmpleadosComponent,
+    PrintErrorComponent,
   ],
   imports: [
     BrowserModule,

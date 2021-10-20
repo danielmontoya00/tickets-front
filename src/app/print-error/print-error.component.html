@@ -1,0 +1,15 @@
+<div class="error-msg" *ngIf="control && control.errors && (control.dirty || control.touched)">
+  <div *ngIf="control.errors.required"><small>Este campo es requerido.</small></div>
+  <div *ngIf="control.errors.minlength"><small>Debe de ser de una longitud mínima de
+      {{control.errors.minlength.requiredLength}}.</small></div>
+  <div *ngIf="control.errors.maxlength"><small>Debe de ser de una longitud máxima de
+      {{control.errors.maxlength.requiredLength}}.</small></div>
+  <div *ngIf="control.errors.unique"><small>{{control.errors.unique}}</small></div>
+  <div *ngIf="control.errors.lessThen"><small>{{control.errors.lessThen}}</small></div>
+  <div *ngIf="control.errors.greaterThan"><small>{{control.errors.greaterThan}}</small></div>
+  <div *ngIf="control.errors.email"><small>Debes ingresar un correo valido.</small></div>
+  <div *ngIf="control.errors.min"><small>Debe teber un mínimo de {{ control.errors.min.min }}</small></div>
+  <div *ngIf="control.errors.mobile"><small>{{ control.errors.mobile }}</small></div>
+  <div *ngIf="control.errors.confirmPassword"><small>{{ control.errors.confirmPassword }}</small></div>
+  <div *ngIf="control.errors.NotEqual"><small>Las contraseñas no coinciden</small></div>
+</div>

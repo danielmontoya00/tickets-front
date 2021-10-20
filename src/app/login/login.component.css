@@ -1,7 +1,7 @@
 .form-container{
     background: #797C95;
    width: 450px;
-   height: 250px;
+   /* height: 250px; */
    position: absolute;
    top: 50%;
    left: 50%;
@@ -21,7 +21,7 @@
    color: #fff;
    width: 150px;
    display: inline-block;
-   
+
 }
 .form-btn{
    display: inline-block;

@@ -29,10 +29,12 @@
                 <td>{{empleado.username}}</td>
                 <td>{{empleado.email}}</td>
                 <td style="text-align: center;"><a href="#" ><i class="fa fa-pencil"></i></a></td>
-                <td style="text-align: center;"> <a href="#" ><i class="fa fa-trash"></i></a></td>
+                <td (click)="borrarRegistro(empleado.id)" style="text-align: center;"> <a href="#" ><i class="fa fa-trash"></i></a></td>
               </tr>
             </tbody>
           </table>
+
+          <p *ngIf="empleados.length == 0" class="text-center">No hay registros para mostrar</p>
     </div>
 
 </div>

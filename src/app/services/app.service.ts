@@ -20,7 +20,7 @@ export class AppService {
    */
 
   getUsers() {
-    return this.httpClient.get<Empleado[]>(`${environment.servidor}/users`);
+    return this.httpClient.get<Empleado[]>(`${environment.servidor}/users?_where[role.name]=Empleado`);
   }
 
   getCategorias() {

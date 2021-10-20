@@ -33,6 +33,8 @@ export class EmpleadosComponent implements OnInit, OnDestroy {
   }
 
   borrarRegistro(id:any){
-    this.store.dispatch(appActions.deleteUser({id}))
+    if(confirm("Desea eliminar este registro?")){
+      this.store.dispatch(appActions.deleteUser({id}))
+    }
   }
 }

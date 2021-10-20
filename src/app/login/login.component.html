@@ -4,7 +4,9 @@
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <input type="email" name="" formControlName="identifier" placeholder="Email">
+        <app-print-error [control]="loginForm.controls['identifier']"></app-print-error>
         <input type="password" name="" formControlName="password" placeholder="Contraseña">
+        <app-print-error [control]="loginForm.controls['password']"></app-print-error>
         <input type="submit" nombre="" class="btn" name="Iniciar Sesion" placeholder="Iniciar Sesion" >
     </form>
 </div>
