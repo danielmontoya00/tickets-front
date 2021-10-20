@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Ticket } from '../../models/Ticket.model';
 import { AppState } from '../store/app.store';
 import { getTickets } from '../store/actions/app.actions';
+import * as appActions from 'src/app/store/actions/app.actions';
 
 @Component({
   selector: 'app-tickets',
@@ -33,4 +34,8 @@ export class TicketsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  borrarRegistro(id:any){
+    if (window.confirm("¿Desea eliminar el ticket?")){
+    this.store.dispatch(appActions.deleteTickets({id}))}
+  }
 }

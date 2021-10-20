@@ -8,7 +8,7 @@
         <span style="padding: 1em 0 0 0;">LISTA DE EMPLEADOS</span>
     </div>
     <div class="row" style="width: 95%; margin: auto;" >
-        <a style="text-align: right; font-size: small; padding: 0;" >+Agregar Empleado</a>
+        <a style="text-align: right; font-size: small; padding: 0; text-decoration: none;" routerLink="/agregar-empleados" >+Agregar Empleado</a>
         <hr >
     </div>
     <div class="row" style="width: 95%; margin: auto;">
@@ -24,12 +24,12 @@
                 <th scope="col" class="col-1" style="text-align: center;">Eliminar</th>
               </tr>
             </thead>
-            <tbody *ngFor="let empleado of empleados;">
-              <tr>
+            <tbody>
+              <tr  *ngFor="let empleado of empleados;">
                 <td>{{empleado.username}}</td>
                 <td>{{empleado.email}}</td>
-                <td style="text-align: center;"><a href="#" ><i class="fa fa-pencil"></i></a></td>
-                <td (click)="borrarRegistro(empleado.id)" style="text-align: center;"> <a href="#" ><i class="fa fa-trash"></i></a></td>
+                <td style="text-align: center;"><a ><i class="fa fa-pencil" style="cursor:pointer"></i></a></td>
+                <td style="text-align: center; "> <a (click)="borrarRegistro(empleado.id)" ><i class="fa fa-trash" style="cursor: pointer;"></i></a></td>
               </tr>
             </tbody>
           </table>

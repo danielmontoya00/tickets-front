@@ -1,0 +1,18 @@
+.nav-link{
+    display: inline-block;
+}
+.nav-item hr{
+    margin: 0 auto;
+}
+.nav-item i{
+    padding-left: 10px; 
+    color: #434744;
+    font-size: 15px;
+}
+
+/* .submenu{
+    /* height: 0;
+    overflow: hidden;
+    transition: all 0.3s; 
+} */
+
