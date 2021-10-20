@@ -84,8 +84,8 @@ export class AppEffects {
     insertUser$ = createEffect(() => {
       return this.actions$.pipe(
           ofType(appActions.insertUser),
-          switchMap(({username, email, password}) =>
-            this.appService.insertUser(username, email, password).pipe(
+          switchMap(({username, email, password, role}) =>
+            this.appService.insertUser(username, email, password, role).pipe(
               map(data => appActions.insertUserSuccess({ data })),
               catchError(error => of(appActions.insertUserFailure({ error }))))
             ),

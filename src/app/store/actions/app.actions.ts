@@ -52,7 +52,7 @@ export const deleteTicketsFailure = createAction('[App] Eliminar Tickets Failure
 /**
  * Acciones de insertar
  */
-export const insertUser = createAction('[App] Insertar Usuarios', props<{ username: string, email: string, password: string }>());
+export const insertUser = createAction('[App] Insertar Usuarios', props<{ username: string, email: string, password: string, role: number}>());
 export const insertUserSuccess = createAction('[App] Insertar Usuarios Success', props<{data: any}>());
 export const insertUserFailure = createAction('[App] Insertar Usuarios Failure', props<{error: any}>());
 

@@ -35,11 +35,12 @@ export class AppService {
    * Servicios para insertar
    */
 
-  insertUser(username: string, email: string, password: string) {
+  insertUser(username: string, email: string, password: string, role: number) {
     return this.httpClient.post(`${environment.servidor}/users`, {
       username,
       email,
-      password
+      password,
+      role
     });
   }
 

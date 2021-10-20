@@ -1,3 +1,4 @@
+import { AgregarEmpleadosComponent } from './agregar-empleados/agregar-empleados.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -17,6 +18,9 @@ import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { EffectsArray } from './store/effects';
+import { AgregarTicketsComponent } from './agregar-tickets/agregar-tickets.component';
+import { AgregarCategoriaComponent } from './agregar-categoria/agregar-categoria.component';
+import { CategoriasComponent } from './categorias/categorias.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { EffectsArray } from './store/effects';
     ReportesComponent,
     TicketsComponent,
     EmpleadosComponent,
+    AgregarEmpleadosComponent,
+    AgregarTicketsComponent,
+    AgregarCategoriaComponent,
+    CategoriasComponent,
   ],
   imports: [
     BrowserModule,
