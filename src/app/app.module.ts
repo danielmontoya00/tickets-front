@@ -22,6 +22,9 @@ import { PrintErrorComponent } from './print-error/print-error.component';
 import { AgregarTicketsComponent } from './agregar-tickets/agregar-tickets.component';
 import { AgregarCategoriaComponent } from './agregar-categoria/agregar-categoria.component';
 import { CategoriasComponent } from './categorias/categorias.component';
+import { EditarEmpleadoComponent } from './editar-empleado/editar-empleado.component';
+import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.component';
+import { EditarTicketComponent } from './editar-ticket/editar-ticket.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { CategoriasComponent } from './categorias/categorias.component';
     AgregarTicketsComponent,
     AgregarCategoriaComponent,
     CategoriasComponent,
+    EditarEmpleadoComponent,
+    EditarCategoriaComponent,
+    EditarTicketComponent,
   ],
   imports: [
     BrowserModule,

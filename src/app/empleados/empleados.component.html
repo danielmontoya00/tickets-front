@@ -28,7 +28,7 @@
               <tr  *ngFor="let empleado of empleados;">
                 <td>{{empleado.username}}</td>
                 <td>{{empleado.email}}</td>
-                <td style="text-align: center;"><a ><i class="fa fa-pencil" style="cursor:pointer"></i></a></td>
+                <td style="text-align: center;"><a ><i routerLink="/editar-empleado/{{empleado.id}}" class="fa fa-pencil" style="cursor:pointer"></i></a></td>
                 <td style="text-align: center; "> <a (click)="borrarRegistro(empleado.id)" ><i class="fa fa-trash" style="cursor: pointer;"></i></a></td>
               </tr>
             </tbody>

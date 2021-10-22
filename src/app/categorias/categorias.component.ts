@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { AppState } from '../store/app.store';
 import { Store } from '@ngrx/store';
 import * as appActions from 'src/app/store/actions/app.actions';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-categorias',
@@ -14,14 +15,18 @@ import * as appActions from 'src/app/store/actions/app.actions';
 export class CategoriasComponent implements OnInit {
   categorias: Categoria[];
   subscripcion: Subscription;
-  constructor(private store: Store<AppState>) { }
 
+  constructor(
+    private store: Store<AppState>
+    ) { }
+    
   ngOnInit(): void {
     this.subscripcion = this.store.select('app').subscribe((x) => {
       this.categorias = x.categorias;
     });
     this.store.dispatch(getCategorias());
   }
+
 
   ngOnDestroy(): void {
     this.subscripcion.unsubscribe();

@@ -66,7 +66,7 @@ export class AppService {
    */
 
   updateUser(id: number, username: string, email: string, password: string) {
-    return this.httpClient.post(`${environment.servidor}/users/${id}`, {
+    return this.httpClient.put(`${environment.servidor}/users/${id}`, {
       username,
       email,
       password
@@ -74,14 +74,14 @@ export class AppService {
   }
 
   updateCategoria(id: number, nombre: string, descripcion: string) {
-    return this.httpClient.post(`${environment.servidor}/categorias/${id}`, {
+    return this.httpClient.put(`${environment.servidor}/categorias/${id}`, {
       nombre,
       descripcion
     });
   }
 
   updateTickets(id: number, descripcion: string, fechaLimite: Date, estado: EstadosTicket, categoria: number, user: number) {
-    return this.httpClient.post(`${environment.servidor}/tickets/${id}`, {
+    return this.httpClient.put(`${environment.servidor}/tickets/${id}`, {
       descripcion,
       fechaLimite,
       estado,
