@@ -4,7 +4,7 @@
     </div>
     <div class="col-10" style="background-color: #E6E6E6; ">
         <div class="row" style="width: 95%; margin: auto;">
-            <span style="padding: 1em 0 0 0;">LISTA DE Categorias</span>
+            <span style="padding: 1em 0 0 0;">LISTA DE CATEGORIAS</span>
         </div>
         <div class="row" style="width: 95%; margin: auto;" >
             <a style="text-align: right; font-size: small; padding: 0; text-decoration: none;" routerLink="/agregar-categoria" >+Agregar Categoria</a>
@@ -29,7 +29,7 @@
                   <tr *ngFor="let categoria of categorias | filter:term">
                     <td>{{categoria.nombre}}</td>
                     <td>{{categoria.descripcion}}</td>
-                    <td style="text-align: center;"><a><i class="fa fa-pencil" style="cursor:pointer"></i></a></td>
+                    <td style="text-align: center;"><a ><i routerLink="/editar-categoria/{{categoria.id}}" class="fa fa-pencil" style="cursor:pointer"></i></a></td>
                     <td style="text-align: center;"> <a  (click)="borrarRegistro(categoria.id)"><i class="fa fa-trash" style="cursor:pointer"></i></a></td>
                   </tr>
                 </tbody>

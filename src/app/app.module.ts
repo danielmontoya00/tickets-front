@@ -24,6 +24,9 @@ import { AgregarCategoriaComponent } from './agregar-categoria/agregar-categoria
 import { CategoriasComponent } from './categorias/categorias.component';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { EditarEmpleadoComponent } from './editar-empleado/editar-empleado.component';
+import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.component';
+import { EditarTicketComponent } from './editar-ticket/editar-ticket.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AgregarTicketsComponent,
     AgregarCategoriaComponent,
     CategoriasComponent,
+    EditarEmpleadoComponent,
+    EditarCategoriaComponent,
+    EditarTicketComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,5 @@
+import { EditarTicketComponent } from './editar-ticket/editar-ticket.component';
+import { EditarEmpleadoComponent } from './editar-empleado/editar-empleado.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { Categoria } from './../models/Categoria.model';
 import { AgregarTicketsComponent } from './agregar-tickets/agregar-tickets.component';
@@ -12,6 +14,7 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { AuthorizeGuard } from './guards/authorize.guard';
 // import { compileFunction } from 'vm';
 import { AgregarCategoriaComponent } from './agregar-categoria/agregar-categoria.component';
+import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.component';
 
 
 const routes: Routes = [
@@ -54,6 +57,21 @@ const routes: Routes = [
   {
     path:'categorias',
     component:CategoriasComponent,
+    canActivate: [AuthorizeGuard]
+  },
+  {
+    path:'editar-empleado/:id',
+    component:EditarEmpleadoComponent,
+    canActivate: [AuthorizeGuard]
+  },
+  {
+    path:'editar-categoria/:id',
+    component:EditarCategoriaComponent,
+    canActivate: [AuthorizeGuard]
+  },
+  {
+    path:'editar-ticket/:id',
+    component:EditarTicketComponent,
     canActivate: [AuthorizeGuard]
   }
 ];

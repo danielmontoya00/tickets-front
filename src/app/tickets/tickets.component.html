@@ -31,7 +31,7 @@
                     <td>{{ ticket.categoria.nombre }}</td>
                     <td>{{ ticket.descripcion }}</td>
                     <td>{{ ticket.estado }}</td>
-                    <td style="text-align: center;"><a><i class="fa fa-pencil" style="cursor:pointer"></i></a></td>
+                    <td style="text-align: center;"><a><i routerLink="/editar-ticket/{{ticket.id}}" class="fa fa-pencil" style="cursor:pointer"></i></a></td>
                     <td style="text-align: center;"> <a  (click)="borrarRegistro(ticket.id)"><i class="fa fa-trash" style="cursor:pointer"></i></a></td>
                   </tr>
                 </tbody>

@@ -1,3 +1,4 @@
+import { updateUser } from './../store/actions/app.actions';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -13,6 +14,7 @@ import { getUser } from '../store/actions/app.actions';
 })
 export class EmpleadosComponent implements OnInit, OnDestroy {
   term: any;
+  editEmpleado:Empleado[];
   empleados: Empleado[];
   subscripcion: Subscription;
 
@@ -36,4 +38,5 @@ export class EmpleadosComponent implements OnInit, OnDestroy {
     if (window.confirm("¿Desea eliminar al empleado?")){
     this.store.dispatch(appActions.deleteUser({id}))}
   }
+
 }
