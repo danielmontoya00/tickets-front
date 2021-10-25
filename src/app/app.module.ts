@@ -22,6 +22,8 @@ import { PrintErrorComponent } from './print-error/print-error.component';
 import { AgregarTicketsComponent } from './agregar-tickets/agregar-tickets.component';
 import { AgregarCategoriaComponent } from './agregar-categoria/agregar-categoria.component';
 import { CategoriasComponent } from './categorias/categorias.component';
+import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -39,9 +41,11 @@ import { CategoriasComponent } from './categorias/categorias.component';
   ],
   imports: [
     BrowserModule,
+    Ng2SearchPipeModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot(EffectsArray),
     StoreDevtoolsModule.instrument({

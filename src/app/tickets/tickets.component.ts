@@ -12,7 +12,7 @@ import * as appActions from 'src/app/store/actions/app.actions';
   styleUrls: ['./tickets.component.css']
 })
 export class TicketsComponent implements OnInit, OnDestroy {
-
+  term: any;
   tickets: Ticket[];
   subscription: Subscription;
 

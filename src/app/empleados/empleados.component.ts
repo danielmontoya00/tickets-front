@@ -12,7 +12,7 @@ import { getUser } from '../store/actions/app.actions';
   styleUrls: ['./empleados.component.css']
 })
 export class EmpleadosComponent implements OnInit, OnDestroy {
-
+  term: any;
   empleados: Empleado[];
   subscripcion: Subscription;
 

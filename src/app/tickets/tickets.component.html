@@ -11,7 +11,7 @@
             <hr >
         </div>
         <div class="row" style="width: 95%; margin: auto;">
-            <input placeholder="Buscar Tareas" >
+            <input placeholder="Buscar Tareas" [(ngModel)]="term">
         </div>
 
 
@@ -27,7 +27,7 @@
                   </tr>
                 </thead>
                 <tbody >
-                  <tr *ngFor="let ticket of tickets">
+                  <tr *ngFor="let ticket of tickets | filter:term">
                     <td>{{ ticket.categoria.nombre }}</td>
                     <td>{{ ticket.descripcion }}</td>
                     <td>{{ ticket.estado }}</td>

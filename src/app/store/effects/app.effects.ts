@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AppService } from 'src/app/services/app.service';
 import { Empleado } from 'src/models/Empleado.model';
 import * as appActions from '../actions/app.actions';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class AppEffects {
   constructor(
     private actions$: Actions,
     private app: AppService,
-    private appService: AppService
+    private appService: AppService,
+    private router: Router
   ) { }
 
     getUsers$ = createEffect(() => {
@@ -54,6 +56,9 @@ export class AppEffects {
           switchMap(({id, username, email, password}) =>
             this.appService.updateUser(id, username, email, password).pipe(
               map(data => appActions.updateUserSuccess({ data })),
+              tap(() => {
+                this.router.navigate(['/empleados']);
+              }),
               catchError(error => of(appActions.updateUserFailure({ error }))))
             ),
       );
@@ -65,6 +70,9 @@ export class AppEffects {
           switchMap(({id, descripcion, fechaLimite, estado, categoria, user}) =>
             this.appService.updateTickets(id, descripcion, fechaLimite, estado, categoria, user).pipe(
               map(data => appActions.updateTicketSuccess({ data })),
+              tap(() => {
+                this.router.navigate(['/tickets']);
+              }),
               catchError(error => of(appActions.updateTicketFailure({ error }))))
             ),
       );
@@ -76,6 +84,9 @@ export class AppEffects {
           switchMap(({id, nombre, descripcion}) =>
             this.appService.updateCategoria(id, nombre, descripcion).pipe(
               map(data => appActions.updateCategoriasSuccess({ data })),
+              tap(() => {
+                this.router.navigate(['/categorias']);
+              }),
               catchError(error => of(appActions.updateCategoriasFailure({ error }))))
             ),
       );
@@ -87,6 +98,9 @@ export class AppEffects {
           switchMap(({username, email, password, role}) =>
             this.appService.insertUser(username, email, password, role).pipe(
               map(data => appActions.insertUserSuccess({ data })),
+              tap(() => {
+                this.router.navigate(['/empleados']);
+              }),
               catchError(error => of(appActions.insertUserFailure({ error }))))
             ),
       );
@@ -98,6 +112,9 @@ export class AppEffects {
           switchMap(({descripcion, fechaLimite, estado, categoria, user}) =>
             this.appService.insertTickets(descripcion, fechaLimite, estado, categoria, user).pipe(
               map(data => appActions.insertTicketsSuccess({ data })),
+              tap(() => {
+                this.router.navigate(['/tickets']);
+              }),
               catchError(error => of(appActions.insertTicketsFailure({ error }))))
             ),
       );
@@ -109,6 +126,9 @@ export class AppEffects {
           switchMap(({nombre, descripcion}) =>
             this.appService.insertCategoria(nombre, descripcion).pipe(
               map(data => appActions.insertCategoriasSuccess({ data })),
+              tap(() => {
+                this.router.navigate(['/categorias']);
+              }),
               catchError(error => of(appActions.insertCategoriasFailure({ error }))))
             ),
       );

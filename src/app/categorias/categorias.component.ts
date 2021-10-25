@@ -12,6 +12,7 @@ import * as appActions from 'src/app/store/actions/app.actions';
   styleUrls: ['./categorias.component.scss']
 })
 export class CategoriasComponent implements OnInit {
+  term: any;
   categorias: Categoria[];
   subscripcion: Subscription;
   constructor(private store: Store<AppState>) { }
