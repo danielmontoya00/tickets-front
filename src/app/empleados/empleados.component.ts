@@ -15,6 +15,7 @@ import { getUser } from '../store/actions/app.actions';
   styleUrls: ['./empleados.component.css']
 })
 export class EmpleadosComponent implements OnInit, OnDestroy {
+  term: any;
   editEmpleado:Empleado[];
   empleados: Empleado[];
   subscripcion: Subscription;

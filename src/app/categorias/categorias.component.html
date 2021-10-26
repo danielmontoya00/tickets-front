@@ -11,7 +11,7 @@
             <hr >
         </div>
         <div class="row" style="width: 95%; margin: auto;">
-            <input placeholder="Buscar Tareas" >
+            <input placeholder="Buscar Categorias"  [(ngModel)]="term" >
         </div>
 
 
@@ -26,7 +26,7 @@
                   </tr>
                 </thead>
                 <tbody >
-                  <tr *ngFor="let categoria of categorias">
+                  <tr *ngFor="let categoria of categorias | filter:term">
                     <td>{{categoria.nombre}}</td>
                     <td>{{categoria.descripcion}}</td>
                     <td style="text-align: center;"><a ><i routerLink="/editar-categoria/{{categoria.id}}" class="fa fa-pencil" style="cursor:pointer"></i></a></td>

@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./categorias.component.scss']
 })
 export class CategoriasComponent implements OnInit {
+  term: any;
   categorias: Categoria[];
   subscripcion: Subscription;
 
