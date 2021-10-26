@@ -41,7 +41,7 @@ import { EditarTicketComponent } from './editar-ticket/editar-ticket.component';
     CategoriasComponent,
     EditarEmpleadoComponent,
     EditarCategoriaComponent,
-    EditarTicketComponent,
+    EditarTicketComponent
   ],
   imports: [
     BrowserModule,

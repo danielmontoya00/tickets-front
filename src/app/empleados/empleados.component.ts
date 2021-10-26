@@ -1,5 +1,7 @@
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { BrowserModule } from '@angular/platform-browser';
 import { updateUser } from './../store/actions/app.actions';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgModule, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Empleado } from 'src/models/Empleado.model';
@@ -16,7 +18,8 @@ export class EmpleadosComponent implements OnInit, OnDestroy {
   editEmpleado:Empleado[];
   empleados: Empleado[];
   subscripcion: Subscription;
-
+  mostrar=false;
+  empleadoinfo: Empleado[];
   constructor(
     private store: Store<AppState>
   ) { }
@@ -37,5 +40,12 @@ export class EmpleadosComponent implements OnInit, OnDestroy {
     if (window.confirm("¿Desea eliminar al empleado?")){
     this.store.dispatch(appActions.deleteUser({id}))}
   }
-
+  mostrarInformacion(id:Number){
+    this.mostrar=true;
+    this.empleadoinfo = this.empleados.filter(empleado => empleado.id == Number(id)  );
+  
+  
+  }
+  
+  
 }
