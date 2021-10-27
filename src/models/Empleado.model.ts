@@ -8,4 +8,5 @@ export class Empleado {
   blocked: boolean;
   confirmed: boolean;
   tickets: Ticket[];
+  role: any;
 }

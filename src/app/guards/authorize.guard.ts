@@ -15,7 +15,7 @@ export class AuthorizeGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isAuth();
+    return this.authService.isAuth() && !this.authService.isAdmin();
   }
   canLoad(
     route: Route,

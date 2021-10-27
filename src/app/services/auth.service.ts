@@ -64,10 +64,14 @@ export class AuthService {
     return false;
   }
 
+  isAdmin() {
+		return this.getCuenta()?.role.type == 'authenticated';
+	}
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.router.navigate(['login'], {
+    this.router.navigate(['auth'], {
       replaceUrl: true
     });
     this.store.dispatch(cerrarSesion()); // Limpia el store de Auth
@@ -77,9 +81,19 @@ export class AuthService {
     const token = localStorage.getItem('token');
     const usuario = localStorage.getItem('user');
     if (token && usuario) {
-      this.router.navigate(['empleados'], {
-        replaceUrl: true
-      });
+      const user = JSON.parse(usuario);
+      switch(user.role.type) {
+        case 'empleado':
+          this.router.navigate(["/client"], {
+            replaceUrl: true
+          });
+          break;
+        case 'authenticated':
+          this.router.navigate(["/admin"], {
+            replaceUrl: true
+          });
+          break;
+      }
       return false;
     }
     return true;

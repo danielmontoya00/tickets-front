@@ -26,9 +26,20 @@ export class AuthEffects {
         map(({ user, jwt }) => {
           localStorage.setItem('token', jwt);
           localStorage.setItem('user', JSON.stringify(user));
-          this.router.navigate(["/empleados"], {
-            replaceUrl: true
-          });
+
+          switch(user.role.type) {
+            case 'empleado':
+              this.router.navigate(["/client"], {
+                replaceUrl: true
+              });
+              break;
+            case 'authenticated':
+              this.router.navigate(["/admin"], {
+                replaceUrl: true
+              });
+              break;
+          }
+          
           return auth.loginSuccess({ user, token: jwt })
         }),
         catchError((error) => {
