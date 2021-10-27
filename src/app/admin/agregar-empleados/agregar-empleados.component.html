@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-2" style="margin: 0; padding: 0; max-height: 100vh; height: 100vh; background-color: #797C95; ">
+        <app-nav-bar></app-nav-bar>
+    </div>
+    <div class="col-10" style="background-color: #E6E6E6; ">
+        <div class="row" style="width: 95%; margin: auto;">
+            <span style="padding: 1em 0 0 0;">AGREGAR EMPLEADOS</span>
+        </div>
+        <div class="row" style="width: 95%; margin: auto;">
+            <a style="text-align: right; font-size: small; padding: 0; text-decoration: none;"
+                routerLink="/admin/empleados">-Listar Empleados</a>
+            <hr>
+        </div>
+        <div class="container-fluid"
+            style="border: solid #707070 2px; border-style: solid; max-height: 650px; height: 800px; max-width: 75%;">
+
+            <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+                <label class="form-label">Nombre</label>
+                <input type="text" formControlName="user" class="form-control">
+                <label class="form-label">Correo</label>
+                <input type="email" class="form-control" formControlName="email">
+                <label class="form-label">Contraseña</label>
+                <input type="password" class="form-control" formControlName="pass"><br>
+                <select formControlName="role">
+                    <option value="3">Empleado</option>
+                    <option value="1">Administrador</option>
+                </select><br><br>
+                <input type="submit" nombre="" class="button" name="Agregar">
+            </form>
+
+
+        </div>
+
+    </div>
+
+</div>
