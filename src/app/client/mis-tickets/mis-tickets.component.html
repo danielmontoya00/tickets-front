@@ -1,1 +1,35 @@
-<p>mis-tickets works!</p>
+<div class="row" style="width: 95%; margin: auto;">
+  <span style="padding: 1em 0 0 0;">LISTA DE TAREAS</span>
+</div>
+<div class="row" style="width: 95%; margin: auto;" >
+  <hr >
+</div>
+<div class="row" style="width: 95%; margin: auto;">
+  <input placeholder="Buscar Tareas" [(ngModel)]="term">
+</div>
+
+
+<div class="row" style="width: 95%; margin: auto;">
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="col-4">Categoria</th>
+          <th scope="col" class="col-4">Descripcion</th>
+          <th scope="col" class="col-4">Fecha Limite</th>
+          <th scope="col" class="col-2">Estado</th>
+          <th scope="col" class="col-1" style="text-align: center;">Terminar</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let ticket of tickets | filter:term">
+          <td>{{ ticket.categoria.nombre }}</td>
+          <td>{{ ticket.descripcion }}</td>
+          <td>{{ ticket.fechaLimite | date:'medium' }}</td>
+          <td>{{ ticket.estado }}</td>
+          <td style="text-align: center;"><a (click)="terminarTicket(ticket)"><i [ngStyle]="(ticket.estado === 'completado')?{'color': 'gray', 'cursor': 'not-allowed'}:{'cursor': 'pointer'}" class="fa fa-check-circle"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="tickets.length == 0" class="text-center">No hay tickets asignados</p>
+</div>
