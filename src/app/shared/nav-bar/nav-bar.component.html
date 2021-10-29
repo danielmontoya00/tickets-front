@@ -1,3 +1,4 @@
+
 <nav class="navbar-dark " style="padding-top: 1em;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Logo</a>
@@ -8,16 +9,16 @@
     <ng-container [ngSwitch]="role">
       <ul *ngSwitchCase="'authenticated'" class="navbar-nav">
         <li class="nav-item ">
-          <a class="nav-link ">Empleados <i class="fa fa-chevron-down"aria-hidden="true"></i></a>
-          <ul class="submenu">
+          <a class="nav-link " (click)="show('empleado')">Empleados <i class="fa fa-chevron-down"aria-hidden="true"></i></a>
+          <ul class="submenu" [ngStyle]="(mostrare == true)?{'height': '7rem' }:{'height': '0'}">
             <li class="nav-item"><a class="nav-link" routerLink="/admin/empleados">Empleados </a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/admin/agregar-empleados">Agregar Empleados </a></li>
           </ul>
           <hr>
         </li>
         <li class="nav-item container-submenu">
-          <a class="nav-link submenu-btn">Tickets <i class="fa fa-chevron-down"aria-hidden="true"></i></a>
-            <ul class="submenu">
+          <a class="nav-link submenu-btn" (click)="show('tickets')">Tickets <i class="fa fa-chevron-down"aria-hidden="true"></i></a>
+            <ul class="submenu" [ngStyle]="(mostrart == true)?{'height': '14rem' }:{'height': '0'}">
               <li class="nav-item"><a class="nav-link" routerLink="/admin/tickets">Tickets </a></li>
               <li class="nav-item"><a class="nav-link" routerLink="/admin/agregar-tickets">Agregar Tickets </a></li>
               <li class="nav-item"><a class="nav-link" routerLink="/admin/categorias">Categorias</a></li>
@@ -29,9 +30,10 @@
           <a class="nav-link" routerLink="/admin/reportes">Reportes</a>
           <hr>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="logout()">Cerrar Sesión</a>
-          <hr style="margin: 0 auto;">
+        <li class="nav-item" style="position:absolute;
+        bottom:5px;">
+          <a class="nav-link" style="cursor: pointer;" (click)="logout()" >Cerrar Sesión</a>
+          <hr style="margin: 0 auto; ">
         </li>
       </ul>
 

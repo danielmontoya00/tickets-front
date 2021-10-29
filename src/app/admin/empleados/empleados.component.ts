@@ -1,3 +1,4 @@
+import { Ticket } from './../../../models/Ticket.model';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { Component, NgModule, OnDestroy, OnInit } from '@angular/core';
@@ -6,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { Empleado } from 'src/models/Empleado.model';
 import * as appActions from 'src/app/store/actions/app.actions';
 import { AppState } from 'src/app/store/app.store';
+import { filter } from 'rxjs/operators';
+import { tick } from '@angular/core/testing';
 
 @Component({
   selector: 'app-empleados',
@@ -19,6 +22,8 @@ export class EmpleadosComponent implements OnInit, OnDestroy {
   subscripcion: Subscription;
   mostrar=false;
   empleadoinfo: Empleado[];
+  tickets: Ticket[];
+
   constructor(
     private store: Store<AppState>
   ) { }
@@ -41,8 +46,10 @@ export class EmpleadosComponent implements OnInit, OnDestroy {
   }
   mostrarInformacion(id:Number){
     this.mostrar=true;
-    this.empleadoinfo = this.empleados.filter(empleado => empleado.id == Number(id)  );
+    this.empleadoinfo = this.empleados.filter(empleado => empleado.id == id)
+    this.tickets = this.empleadoinfo[0].tickets.filter(filtro => filtro.estado != 'completado')
   
+    
   
   }
   

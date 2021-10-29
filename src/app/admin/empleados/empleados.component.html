@@ -1,89 +1,71 @@
-
-<div class="container-fluid">
-<div class="row" >
-<div class="col-2" style="margin: 0; padding: 0; max-height: 100vh; height: 100vh; background-color: #797C95; ">
-   <app-nav-bar></app-nav-bar>
-</div>
-
-<div class="col-10" style="background-color: #E6E6E6; ">
-    <div class="row" style="width: 95%; margin: auto;">
-        <span style="padding: 1em 0 0 0;">LISTA DE EMPLEADOS</span>
+<div class="row contenedor-principal">
+  <div class="col-2 side-bar">
+    <app-nav-bar></app-nav-bar>
+  </div>
+  <div class="col-10 contenedor-secundario">
+    <div class="row">
+      <span >LISTA DE EMPLEADOS</span>
     </div>
-    <div class="row" style="width: 95%; margin: auto;" >
-        <a style="text-align: right; font-size: small; padding: 0; text-decoration: none;" routerLink="/admin/agregar-empleados" >+Agregar Empleado</a>
-        <hr >
+    <div class="row">
+      <a class="atajo" routerLink="/admin/agregar-empleados">+Agregar Empleado</a>
+      <hr>
     </div>
-    <div class="row" style="width: 95%; margin: auto; padding-bottom: 1vh;">
-        <input placeholder="Buscar Empleado"  [(ngModel)]="term">
+    <div class="row">
+      <input type="search"  class="form-control" placeholder="Buscar Empleado" [(ngModel)]="term">
     </div>
-    <div class="row scroll" style="width: 95%; margin: auto; overflow-y: scroll; max-height: 35vh;">
-        <table class="table">
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="col-4">Nombre</th>
+            <th scope="col" class="col-6">Correo</th>
+            <th scope="col" class="col-1 text-center">Modificar</th>
+            <th scope="col" class="col-1 text-center">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empleado of empleados | filter:term;">
+            <td (click)="mostrarInformacion(empleado.id)">{{empleado.username}}</td>
+            <td>{{empleado.email}}</td>
+            <td class="text-center"><a><i routerLink="/admin/editar-empleado/{{empleado.id}}" class="fa fa-pencil"></i></a></td>
+            <td class="text-center"> <a (click)="borrarRegistro(empleado.id)"><i class="fa fa-trash"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="empleados.length == 0" class="text-center">No hay registros para mostrar</p>
+    </div>
+    <div class="container-fluid" *ngIf="mostrar">
+      <div class="col-12">
+        <div class="row">
+          <a (click)="mostrar=false">X</a>
+        </div>
+        <div class="row adicional" *ngFor="let empleado of empleadoinfo;">
+          <h4>{{empleado.username}}</h4>
+          <h6>ID: {{empleado.id}}</h6>
+          <h6 class="text-right">{{empleado.email}}</h6>
+          <hr>
+          <p>TICKETS ASIGNADOS: {{tickets.length}}</p><br>
+          <table class="table">
             <thead>
               <tr>
-                <th scope="col" class="col-4">Nombre</th>
-                <th scope="col" class="col-6">Correo</th>
-                <th scope="col" class="col-1" style="text-align: center;">Modificar</th>
-                <th scope="col" class="col-1" style="text-align: center;">Eliminar</th>
+                <th scope="col" class="col-8">Descripcion</th>
+                <th scope="col" class="col-4">Fecha Limite</th>
               </tr>
             </thead>
-            <tbody>
-              <tr  *ngFor="let empleado of empleados | filter:term;">
-                <td (click)="mostrarInformacion(empleado.id)">{{empleado.username}}</td>
-                <td>{{empleado.email}}</td>
-                <td style="text-align: center;"><a ><i routerLink="/admin/editar-empleado/{{empleado.id}}" class="fa fa-pencil" style="cursor:pointer"></i></a></td>
-                <td style="text-align: center; "> <a (click)="borrarRegistro(empleado.id)" ><i class="fa fa-trash" style="cursor: pointer;"></i></a></td>
+            <tbody *ngFor="let ticket of tickets;">
+              <tr>
+                <td >{{ticket.descripcion}}</td>
+                <td >{{ticket.fechaLimite | date:'medium'}}</td>
+              </tr>
+              <tr>
+                <!-- <td *ngIf="empleado.tickets[1]">{{empleado.tickets[1].descripcion}}</td>
+                <td *ngIf="empleado.tickets[1]">{{empleado.tickets[1].fechaLimite | date:'medium'}}</td>
+                <td *ngIf="empleado.tickets[1]">{{empleado.tickets[1].estado}}</td> -->
               </tr>
             </tbody>
           </table>
-
-          <p *ngIf="empleados.length == 0" class="text-center">No hay registros para mostrar</p>
+        </div>
+      </div>
     </div>
-
-  <div class="container-fluid"
-            style="background-color: #E6E6E6; border: solid #707070 1px; border-style: solid; max-height: 750px; height: 350px; max-width: 95%; margin-top: 40px; " *ngIf="mostrar">
-        
-
-        
-<div class="col-12" >
-    <div class="row" style="width: 95%; margin: auto; padding-top: 5px;" >
-        <a style="text-align: right; font-size: small; padding: 0; text-decoration: none; cursor: pointer;" (click)="mostrar=false"  >X</a>
-        
-    </div>
-    <div class="row" style="width: 95%; margin: auto;" *ngFor="let empleado of empleadoinfo;" >
-      <h4>{{empleado.username}}</h4>
-      <h6>ID: {{empleado.id}}</h6>
-      <h6 style="text-align: right;">{{empleado.email}}</h6>
-      <hr>
-      <p>TICKETS ASIGNADOS: {{empleado.tickets.length}}</p><br>
-      
-      
-      <table class="table" >
-        <thead>
-          <tr>
-            <th scope="col" class="col-8">Descripcion</th>
-            <th scope="col" class="col-2">Fecha Limite</th>
-            <th scope="col" class="col-1">Estado</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr >
-            <td *ngIf="empleado.tickets[0]">{{empleado.tickets[0].descripcion}}</td>
-            <td *ngIf="empleado.tickets[0]">{{empleado.tickets[0].fechaLimite}}</td>
-            <td *ngIf="empleado.tickets[0]">{{empleado.tickets[0].estado}}</td>
-            </tr>
-            <tr >
-              <td *ngIf="empleado.tickets[1]">{{empleado.tickets[1].descripcion}}</td>
-              <td *ngIf="empleado.tickets[1]">{{empleado.tickets[1].fechaLimite}}</td>
-              <td *ngIf="empleado.tickets[1]">{{empleado.tickets[1].estado}}</td>
-              </tr>
-        </tbody>
-      </table>
-
-          
-    </div>
-</div>
-</div>
-
-</div>
-</div>
+  </div>
 </div>

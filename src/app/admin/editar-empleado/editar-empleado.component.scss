@@ -1,0 +1,38 @@
+.contenedor-principal{
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    padding: 0; 
+    margin: 0;
+  
+  }
+  .side-bar{
+    margin: 0; 
+    padding: 0;
+    max-height: 100vh;  
+    background-color: #797C95; 
+  }
+  .contenedor-secundario .row{
+    width: 95%; 
+    margin: auto;
+  }
+  .contenedor-secundario{
+    background-color: #E6E6E6;
+  }
+  .row span{
+    padding: 1em 0 0 0;
+  }
+  .row a{
+    text-align: right; 
+    font-size: small; 
+    padding: 0; 
+    text-decoration: none;
+    color: #877A76;
+  }
+  .container-fluid{
+    border: solid #707070 2px; 
+    border-style: solid; 
+    max-height: 650px; 
+    height: 300px; 
+    max-width: 75%;
+  }

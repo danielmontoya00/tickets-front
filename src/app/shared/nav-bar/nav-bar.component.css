@@ -10,9 +10,9 @@
     font-size: 15px;
 }
 
-/* .submenu{
-    /* height: 0;
+.submenu{
     overflow: hidden;
-    transition: all 0.3s; 
-} */
+    transition: all 0.5s; 
+    cursor: pointer;
+} 
 

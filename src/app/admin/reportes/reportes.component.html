@@ -1,32 +1,77 @@
-<div class="row" >
-    <div class="col-2" style="margin: 0; padding: 0; height: 100vh; background-color: #797C95; ">
+<div class="row contenedor-principal" >
+    <div class="col-2 side-bar" >
        <app-nav-bar></app-nav-bar>
     </div>
-    <div class="col-10" style="background-color: #E6E6E6; ">
-        <div class="row" style="width: 95%; margin: auto;">
-            <span style="padding: 1em 0 0 0;">REPORTES DE TICKETS</span> 
+    <div class="col-10 contenedor-secundario">
+        <div class="row">
+            <span >REPORTES DE TICKETS</span> 
         </div>
-        <div class="row" style="width: 95%; margin: auto;" >
+        <div class="row" >
             <hr >
         </div>
-        <div class="row" style="width: 95%; margin: auto;">
-            <input placeholder="Buscar Ticket" >
+        <div class="row">
+            <div class="col-4 text-center" (click)="mostrarInformacion('completos')"><h6>COMPLETADOS</h6></div>
+            <div class="col-4 text-center" (click)="mostrarInformacion('asignados')"><h6>ASIGNADOS</h6></div>
+            <div class="col-4 text-center" (click)="mostrarInformacion('creados')"><h6>CREADOS</h6></div>
         </div>
 
-        <div class="row" style="width: 95%; margin: auto;">
-            <table class="table">
+        <div class="row">
+          <!-- COMPLETOS -->
+            <table class="table" *ngIf="completos" >
                 <thead>
                   <tr>
-                    <th scope="col" class="col-4">Nombre</th>
+                    <th scope="col" class="col-1">ID</th>
+                    <th scope="col" class="col-2">Categoria</th>
                     <th scope="col" class="col-6">Descripcion</th>
-                    <th scope="col" class="col-2">Estado</th>
+                    <th scope="col" class="col-2">Realizó</th>
                   </tr>
                 </thead>
                 <tbody >
+                  <tr *ngFor="let ticket of ticketsf">
+                    <td>{{ticket.id}}</td>
+                    <td>{{ticket.categoria.nombre}}</td>
+                    <td>{{ticket.descripcion}}</td>
+                    <td>{{ticket.user.username}}</td>
+                    </tr>
+                </tbody>
+              </table>
+              <!-- ASIGNADOS -->
+              <table class="table" *ngIf="asignados">
+                <thead>
                   <tr>
-                    <td>NOMBRE</td>
-                    <td>...................</td>
-                    <td>ACTIVO</td>
+                    <th scope="col" class="col-1">ID</th>
+                    <th scope="col" class="col-2">Categoria</th>
+                    <th scope="col" class="col-4">Descripcion</th>
+                    <th scope="col" class="col-2">Fecha Limite</th>
+                    <th scope="col" class="col-2">Realizara</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr *ngFor="let ticket of ticketsf">
+                    <td>{{ticket.id}}</td>
+                    <td>{{ticket.categoria.nombre}}</td>
+                    <td>{{ticket.descripcion}}</td>
+                    <td>{{ticket.fechaLimite | date:'medium'}}</td>
+                    <td>{{ticket.user.username}}</td>
+                    </tr>
+                </tbody>
+              </table>
+              <!-- CREADOS -->
+              <table class="table" *ngIf="creados">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-1">ID</th>
+                    <th scope="col" class="col-2">Nombre</th>
+                    <th scope="col" class="col-6">Descripcion</th>
+                    <th scope="col" class="col-2">Fecha Limite</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr *ngFor="let ticket of ticketsf">
+                    <td>{{ticket.id}}</td>
+                    <td>{{ticket.categoria.nombre}}</td>
+                    <td>{{ticket.descripcion}}</td>
+                    <td>{{ticket.fechaLimite | date:'medium'}}</td>
                     </tr>
                 </tbody>
               </table>

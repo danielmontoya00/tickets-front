@@ -1,0 +1,40 @@
+.contenedor-principal{
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    padding: 0; 
+    margin: 0;
+  
+  }
+  .side-bar{
+    margin: 0; 
+    padding: 0;
+    max-height: 100vh;  
+    background-color: #797C95; 
+  }
+  .contenedor-secundario .row{
+    width: 95%; 
+    margin: auto;
+  }
+  .contenedor-secundario{
+    background-color: #E6E6E6;
+  }
+  .row span{
+    padding: 1em 0 0 0;
+  }
+  .contenedor-secundario .row:nth-child(2) a{
+    text-align: right; 
+    font-size: small; 
+    padding: 0; 
+    text-decoration: none;
+    color: #877A76;
+  }
+  .table tbody tr:hover{
+    background-color: #B8B4B3;
+  }
+  .fa{
+    cursor: pointer;
+  }
+  tbody td:nth-child(3), tbody td:nth-child(4){
+      cursor: pointer;
+  }

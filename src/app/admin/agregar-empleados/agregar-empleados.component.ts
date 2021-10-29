@@ -16,7 +16,6 @@ import { insertUser } from 'src/app/store/actions/app.actions';
 })
 export class AgregarEmpleadosComponent implements OnInit {
   addUserForm: FormGroup;
-
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>
@@ -29,6 +28,7 @@ export class AgregarEmpleadosComponent implements OnInit {
       pass: ['', [Validators.required]],
       role: ['']
     });
+   
   }
   
   onSubmit(){

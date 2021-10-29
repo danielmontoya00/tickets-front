@@ -22,7 +22,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.store.select('app').subscribe((x) => {
-      this.tickets = x.tickets;
+      this.tickets = x.tickets.filter(ticket => ticket.estado != 'completado' ); 
     })
 
     this.store.dispatch(appActions.getTickets());

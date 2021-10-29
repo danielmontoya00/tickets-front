@@ -1,3 +1,4 @@
+import { NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { cerrarSesion } from 'src/app/store/actions/auth.actions';
@@ -10,7 +11,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
+  mostrare:boolean;
+  mostrart:boolean;
   role: string;
 
   constructor(
@@ -27,5 +29,21 @@ export class NavBarComponent implements OnInit {
     this.store.dispatch(cerrarSesion());
     this.authService.logout();
   }
-
+  show(item:string){
+    if(item == 'empleado'){
+      if(this.mostrare){
+        this.mostrare = false
+      }else{
+        this.mostrare = true
+      }
+    }else{
+      if(this.mostrart){
+        this.mostrart = false
+      }else{
+        this.mostrart = true
+      }
+    }
+  
+  }
+  
 }

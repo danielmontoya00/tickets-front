@@ -57,7 +57,7 @@ export class AppEffects {
             this.appService.updateUser(id, username, email, password).pipe(
               map(data => appActions.updateUserSuccess({ data })),
               tap(() => {
-                this.router.navigate(['/empleados']);
+                this.router.navigate(['/admin/empleados']);
               }),
               catchError(error => of(appActions.updateUserFailure({ error }))))
             ),
@@ -71,7 +71,7 @@ export class AppEffects {
             this.appService.updateTickets(id, descripcion, fechaLimite, estado, categoria, user).pipe(
               map(data => appActions.updateTicketSuccess({ data })),
               tap(() => {
-                this.router.navigate(['/tickets']);
+                this.router.navigate(['/admin/tickets']);
               }),
               catchError(error => of(appActions.updateTicketFailure({ error }))))
             ),
@@ -85,7 +85,7 @@ export class AppEffects {
             this.appService.updateCategoria(id, nombre, descripcion).pipe(
               map(data => appActions.updateCategoriasSuccess({ data })),
               tap(() => {
-                this.router.navigate(['/categorias']);
+                this.router.navigate(['/admin/categorias']);
               }),
               catchError(error => of(appActions.updateCategoriasFailure({ error }))))
             ),
@@ -99,7 +99,7 @@ export class AppEffects {
             this.appService.insertUser(username, email, password, role).pipe(
               map(data => appActions.insertUserSuccess({ data })),
               tap(() => {
-                this.router.navigate(['/empleados']);
+                this.router.navigate(['/admin/empleados']);
               }),
               catchError(error => of(appActions.insertUserFailure({ error }))))
             ),
@@ -113,7 +113,7 @@ export class AppEffects {
             this.appService.insertTickets(descripcion, fechaLimite, estado, categoria, user).pipe(
               map(data => appActions.insertTicketsSuccess({ data })),
               tap(() => {
-                this.router.navigate(['/tickets']);
+                this.router.navigate(['/admin/tickets']);
               }),
               catchError(error => of(appActions.insertTicketsFailure({ error }))))
             ),
@@ -127,7 +127,7 @@ export class AppEffects {
             this.appService.insertCategoria(nombre, descripcion).pipe(
               map(data => appActions.insertCategoriasSuccess({ data })),
               tap(() => {
-                this.router.navigate(['/categorias']);
+                this.router.navigate(['/admin/categorias']);
               }),
               catchError(error => of(appActions.insertCategoriasFailure({ error }))))
             ),
