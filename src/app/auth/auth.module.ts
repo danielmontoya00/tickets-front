@@ -5,6 +5,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../shared/shared.module';
+import { RecoverComponent } from './recover/recover.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
@@ -12,6 +14,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     AuthComponent,
     LoginComponent,
+    RecoverComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     CommonModule,

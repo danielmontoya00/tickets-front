@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { AppState } from '../store/app.store';
 import { Empleado } from '../../models/Empleado.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { cerrarSesion, llenarSesion } from '../store/actions/auth.actions';
+import { cerrarSesion, llenarSesion, recuperarPassword } from '../store/actions/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,20 @@ export class AuthService {
       identifier,
       password
     });
+  }
+
+  recuperarPassword(email: string) {
+    return this.http.post(`${environment.servidor}/auth/forgot-password`, {
+      email
+    });
+  }
+
+  resetPassword(code: string, password: string, passwordConfirmation: string) {
+    return this.http.post(`${environment.servidor}/auth/reset-password`, {
+      code,
+      password,
+      passwordConfirmation
+    })
   }
 
   getCuenta(): Empleado | null {

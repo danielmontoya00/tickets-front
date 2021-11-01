@@ -26,3 +26,43 @@ export const llenarSesion = createAction(
     user: Empleado | null
   }>()
 );
+
+export const recuperarPassword = createAction(
+  '[Auth] Recuperar Password',
+  props<{
+    email: string
+  }>()
+);
+
+export const recuperarPasswordSuccess = createAction(
+  '[Auth] Recuperar Password Success'
+);
+
+export const recuperarPasswordFailure = createAction(
+  '[Auth] Recuperar Password Failure',
+  props<{
+    error: any
+  }>()
+);
+
+
+export const resetPassword = createAction(
+  '[Auth] Reset Password',
+  props<{
+    code: string,
+    password: string,
+    passwordConfirmation: string
+  }>()
+);
+
+export const resetPasswordSuccess = createAction(
+  '[Auth] Reset Password Success'
+);
+
+export const resetPasswordFailure = createAction(
+  '[Auth] Reset Password Failure',
+  props<{
+    error: any
+  }>()
+);
+
