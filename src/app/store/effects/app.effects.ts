@@ -120,6 +120,17 @@ export class AppEffects {
       );
     });
 
+    insertTicketFailure$ = createEffect(() => {
+      return this.actions$.pipe(
+          ofType(appActions.insertTicketsFailure),
+          /** An EMPTY observable only emits completion. Replace with your own observable stream */
+          tap((x) => {
+            alert("El usuario ya tiene dos tickets asignados sin completar.");
+          }));
+    }, {
+      dispatch: false
+    });
+
     insertCategoria$ = createEffect(() => {
       return this.actions$.pipe(
           ofType(appActions.insertCategorias),
