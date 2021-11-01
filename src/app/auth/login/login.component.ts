@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
 
     if(this.loginForm.valid) {
-      console.log("DISPATCH")
       this.store.dispatch(login({
         identifier: this.loginForm.value.identifier,
         password: this.loginForm.value.password
@@ -63,7 +62,6 @@ export class LoginComponent implements OnInit {
         this.loginForm.controls[i].setValue(this.loginForm.controls[i].value);
         this.loginForm.controls[i].markAsTouched();
       }
-      console.log(this.loginForm)
       // TODO: Enviar alerta de que el formulario no es valido.
     }
   }

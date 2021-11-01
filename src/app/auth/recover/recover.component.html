@@ -1,0 +1,17 @@
+<div class="form-container p-2">
+  <div class="form-btn">
+      <h3 style="color: white;">Recuperar contraseña</h3>
+  </div>
+  <p class="text-center" style="color: white;">Enviaremos un email a la dirección email asociada a tu cuenta para recuperar tu contraseña.</p>
+  <form [formGroup]="recoverForm" (ngSubmit)="onSubmit()">
+      <input type="email" name="" formControlName="email" placeholder="Email">
+      <app-print-error [control]="recoverForm.controls['email']"></app-print-error>
+      <input type="submit" nombre="" class="btn" name="Recuperar contraseña" >
+  </form>
+</div>
+
+<footer>
+  <div class="footer" style="position: fixed; bottom: 0;">
+    <p style="text-align: center;">Ingenieria de Software 2021 © </p>
+  </div>
+</footer>

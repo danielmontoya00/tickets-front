@@ -1,6 +1,6 @@
-<div class="form-container">
+<div class="form-container p-2">
     <div class="form-btn">
-        <span>Iniciar Sesion</span>
+        <h3 style="color: white;">Iniciar Sesion</h3>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <input type="email" name="" formControlName="identifier" placeholder="Email">
@@ -8,6 +8,8 @@
         <input type="password" name="" formControlName="password" placeholder="Contraseña">
         <app-print-error [control]="loginForm.controls['password']"></app-print-error>
         <input type="submit" nombre="" class="btn" name="Iniciar Sesion" placeholder="Iniciar Sesion" >
+
+        <p class="text-center" style="color: white;">Haz click <a [routerLink]="['/auth', 'recover']">aquí</a> para recuperar tu contraseña</p>
     </form>
 </div>
 

@@ -1,5 +1,6 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as auth from '../actions/auth.actions';
+import * as authActions from '../actions/auth.actions';
 import { switchMap, map, tap, catchError } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { of } from 'rxjs';
@@ -39,7 +40,7 @@ export class AuthEffects {
               });
               break;
           }
-          
+
           return auth.loginSuccess({ user, token: jwt })
         }),
         catchError((error) => {
@@ -47,5 +48,56 @@ export class AuthEffects {
           return of(auth.loginFailure({ error }));
         })
       )));
+  });
+
+  recoverPassword$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(auth.recuperarPassword),
+        switchMap(({ email }) =>
+          this.authService.recuperarPassword(email).pipe(
+            map(data => auth.recuperarPasswordSuccess()),
+            tap(data => {
+              alert("Un correo ha sido enviado a la dirección introducida para recuperar tu contraseña.");
+
+              this.router.navigate(["/auth"], {
+                replaceUrl: true
+              });
+            }),
+            catchError(error => of(auth.recuperarPasswordFailure({ error }))))
+          ),
+    );
+  });
+
+
+  resetPassword$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(authActions.resetPassword),
+        switchMap(({ code, password, passwordConfirmation }) =>
+          this.authService.resetPassword(code, password, passwordConfirmation).pipe(
+            map(data => authActions.resetPasswordSuccess()),
+            tap(data => {
+              alert("Contraseña actualizada con éxito");
+              this.router.navigate(["/auth"], {
+                replaceUrl: true
+              });
+            }),
+            catchError(error => of(authActions.resetPasswordFailure({ error }))))
+          ),
+    );
+  });
+
+  resetPasswordFailure$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(authActions.resetPasswordFailure),
+        /** An EMPTY observable only emits completion. Replace with your own observable stream */
+        tap(() => {
+          alert("Hubo un error al reiniciar tu contraseña");
+
+          this.router.navigate(["/auth"], {
+            replaceUrl: true
+          });
+        }));
+  }, {
+    dispatch: false
   });
 }
