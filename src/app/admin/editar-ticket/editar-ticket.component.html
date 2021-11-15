@@ -4,7 +4,7 @@
     </div>
     <div class="col-10 contenedor-secundario">
         <div class="row" >
-            <span >EDITAR TICKET</span> 
+            <span >EDITAR TICKET</span>
         </div>
         <div class="row" >
             <a routerLink="/admin/tickets" >-Listar Tickets</a>
@@ -14,22 +14,27 @@
         <form [formGroup]="updateTicketForm" (ngSubmit)="onSubmit()">
             <label class="form-label">Descripcion</label>
             <input type="text" formControlName="descripcion" class="form-control">
+            <app-print-error [control]="updateTicketForm.controls['descripcion']"></app-print-error>
             <label class="form-label">Fecha Limite</label>
-            <input type="date" class="form-control" formControlName="date">
+            <input type="datetime-local" class="form-control" formControlName="date">
+            <app-print-error [control]="updateTicketForm.controls['date']"></app-print-error>
             <label class="form-label">Estado</label><br>
             <select formControlName="estado">
                 <option value="completado">completado</option>
                 <option value="asignado">asignado</option>
                 <option value="creado">creado</option>
-            </select><br>
+            </select>
+            <app-print-error [control]="updateTicketForm.controls['estado']"></app-print-error><br>
             <label class="form-label">Categoria</label><br>
             <select formControlName="categoria">
                 <option *ngFor="let categoria of categorias" value={{categoria.id}}>{{categoria.nombre}}</option>
-            </select><br>
+            </select>
+            <app-print-error [control]="updateTicketForm.controls['categoria']"></app-print-error><br>
             <label class="form-label">Empleado</label><br>
             <select formControlName="usr">
-                <option *ngFor="let empleado of empleados" value={{empleado.id}}>{{empleado.username}}</option>
-            </select><br><br>
+                <option *ngFor="let empleado of empleados" [selected]="" value={{empleado.id}}>{{empleado.username}}</option>
+            </select>
+            <app-print-error [control]="updateTicketForm.controls['empleado']"></app-print-error><br><br>
             <input type="submit" nombre="" class="btn btn-dark" name="Agregar">
         </form>
     </div>

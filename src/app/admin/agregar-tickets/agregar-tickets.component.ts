@@ -17,7 +17,6 @@ export class AgregarTicketsComponent implements OnInit {
   subscripcion: Subscription;
   empleados: Empleado[];
   addTicketForm: FormGroup;
-  addCatForm: FormGroup;
 
   constructor(private store: Store<AppState>, private fb:FormBuilder) { }
 
@@ -33,7 +32,7 @@ export class AgregarTicketsComponent implements OnInit {
       date: ['',[Validators.required]],
       estado: ['',[Validators.required]],
       categoria:['',[Validators.required]],
-      usr:[]
+      usr:['', [Validators.required]]
     });
   }
 
@@ -50,10 +49,14 @@ export class AgregarTicketsComponent implements OnInit {
         categoria: this.addTicketForm.value.categoria,
         user: this.addTicketForm.value.usr
       }))
-  }  else{
-    console.log(this.addTicketForm)}
+  } else{
+      for (const i in this.addTicketForm.controls) {
+        this.addTicketForm.controls[i].setValue(this.addTicketForm.controls[i].value);
+        this.addTicketForm.controls[i].markAsTouched();
+      }
+    }
   }
 
-  
+
 
 }

@@ -26,11 +26,11 @@ export class AgregarEmpleadosComponent implements OnInit {
       user: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required]],
-      role: ['']
+      role: ['', [Validators.required]]
     });
-   
+
   }
-  
+
   onSubmit(){
     if(this.addUserForm.valid){
       this.store.dispatch(insertUser({
@@ -38,9 +38,12 @@ export class AgregarEmpleadosComponent implements OnInit {
         email: this.addUserForm.value.email,
         password: this.addUserForm.value.pass,
         role: this.addUserForm.value.role
-      }))
-      alert("correcto")
+      }));
     }else {
-      console.log(this.addUserForm)} 
+      for (const i in this.addUserForm.controls) {
+        this.addUserForm.controls[i].setValue(this.addUserForm.controls[i].value);
+        this.addUserForm.controls[i].markAsTouched();
+      }
+    }
   }
 }

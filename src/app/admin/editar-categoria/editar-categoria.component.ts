@@ -51,7 +51,10 @@ export class EditarCategoriaComponent implements OnInit {
         descripcion: this.updateCatForm.value.catDescripcion
       }))
     } else {
-      console.log(this.updateCatForm)
+      for (const i in this.updateCatForm.controls) {
+        this.updateCatForm.controls[i].setValue(this.updateCatForm.controls[i].value);
+        this.updateCatForm.controls[i].markAsTouched();
+      }
     }
   }
 }

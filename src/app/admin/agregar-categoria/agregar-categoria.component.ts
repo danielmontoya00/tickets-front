@@ -27,7 +27,10 @@ export class AgregarCategoriaComponent implements OnInit {
         descripcion: this.addCatForm.value.catDescripcion
       }))
     }else{
-      console.log(this.addCatForm)
+      for (const i in this.addCatForm.controls) {
+        this.addCatForm.controls[i].setValue(this.addCatForm.controls[i].value);
+        this.addCatForm.controls[i].markAsTouched();
+      }
     }
   }
 

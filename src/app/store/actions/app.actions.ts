@@ -21,7 +21,7 @@ export const getTicketsFailure = createAction('[App] Obtener Tickets Failure', p
 /**
  * Acciones de editar
  */
-export const updateUser = createAction('[App] Actualizar Usuarios', props<{ id: number, username: string, email: string, password: string }>());
+export const updateUser = createAction('[App] Actualizar Usuarios', props<{ id: number, username: string, email: string, password?: string }>());
 export const updateUserSuccess = createAction('[App] Actualizar Usuarios Success', props<{data: any}>());
 export const updateUserFailure = createAction('[App] Actualizar Usuarios Failure', props<{error: any}>());
 

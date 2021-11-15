@@ -65,12 +65,20 @@ export class AppService {
    * Servicios para actualizar
    */
 
-  updateUser(id: number, username: string, email: string, password: string) {
-    return this.httpClient.put(`${environment.servidor}/users/${id}`, {
-      username,
-      email,
-      password
-    });
+  updateUser(id: number, username: string, email: string, password?: string) {
+    if(password) {
+      return this.httpClient.put(`${environment.servidor}/users/${id}`, {
+        username,
+        email,
+        password
+      });
+    } else {
+      return this.httpClient.put(`${environment.servidor}/users/${id}`, {
+        username,
+        email
+      });
+
+    }
   }
 
   updateCategoria(id: number, nombre: string, descripcion: string) {

@@ -15,8 +15,10 @@
                 <label class="form-label">Insertar Nueva Catgoria</label><br>
                 <label class="form-label">Nombre</label>
                 <input type="text" class="form-control" formControlName="catNombre">
+                <app-print-error [control]="addCatForm.controls['catNombre']"></app-print-error>
                 <label class="form-label">Description</label>
                 <input type="text" class="form-control" formControlName="catDescripcion"><br>
+                <app-print-error [control]="addCatForm.controls['catDescripcion']"></app-print-error>
                 <input type="submit" nombre="" class="btn btn-dark" name="Agregar">
             </form>
         </div>

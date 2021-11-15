@@ -58,6 +58,7 @@ export class AppEffects {
               map(data => appActions.updateUserSuccess({ data })),
               tap(() => {
                 this.router.navigate(['/admin/empleados']);
+                alert("Usuario editado con éxito");
               }),
               catchError(error => of(appActions.updateUserFailure({ error }))))
             ),
@@ -72,6 +73,7 @@ export class AppEffects {
               map(data => appActions.updateTicketSuccess({ data })),
               tap(() => {
                 this.router.navigate(['/admin/tickets']);
+                alert("Ticket editado con éxito");
               }),
               catchError(error => of(appActions.updateTicketFailure({ error }))))
             ),
@@ -86,11 +88,21 @@ export class AppEffects {
               map(data => appActions.updateCategoriasSuccess({ data })),
               tap(() => {
                 this.router.navigate(['/admin/categorias']);
+                alert("Categoria editada con éxito");
               }),
               catchError(error => of(appActions.updateCategoriasFailure({ error }))))
             ),
       );
     });
+
+    updateCategoriaFailure$ = createEffect(() => {
+      return this.actions$.pipe(
+          ofType(appActions.updateCategoriasFailure),
+          /** An EMPTY observable only emits completion. Replace with your own observable stream */
+          tap(() => {
+            alert("Ya existe una categoria con este nombre");
+          }));
+    }, { dispatch: false });
 
     insertUser$ = createEffect(() => {
       return this.actions$.pipe(
@@ -100,11 +112,28 @@ export class AppEffects {
               map(data => appActions.insertUserSuccess({ data })),
               tap(() => {
                 this.router.navigate(['/admin/empleados']);
+                alert("Usuario insertado con éxito");
               }),
               catchError(error => of(appActions.insertUserFailure({ error }))))
             ),
       );
     });
+
+    insertUserFailure$ = createEffect(() => {
+      return this.actions$.pipe(
+          ofType(appActions.insertUserFailure),
+          /** An EMPTY observable only emits completion. Replace with your own observable stream */
+          tap((e: any) => {
+            switch(e.error.error.message[0].messages[0].id) {
+              case 'Auth.form.error.email.taken':
+                alert("Ya existe un usuario con este email");
+              break;
+              default:
+                alert(e.error.error.message[0].messages[0].message);
+                break;
+            }
+          }));
+    }, { dispatch: false });
 
     insertTicket$ = createEffect(() => {
       return this.actions$.pipe(
@@ -114,6 +143,7 @@ export class AppEffects {
               map(data => appActions.insertTicketsSuccess({ data })),
               tap(() => {
                 this.router.navigate(['/admin/tickets']);
+                alert("Ticket insertado con éxito");
               }),
               catchError(error => of(appActions.insertTicketsFailure({ error }))))
             ),
@@ -139,18 +169,31 @@ export class AppEffects {
               map(data => appActions.insertCategoriasSuccess({ data })),
               tap(() => {
                 this.router.navigate(['/admin/categorias']);
+                alert("Categoria insertada con éxito");
               }),
               catchError(error => of(appActions.insertCategoriasFailure({ error }))))
             ),
       );
     });
 
+    insertCategoriaFailure$ = createEffect(() => {
+      return this.actions$.pipe(
+          ofType(appActions.insertCategoriasFailure),
+          /** An EMPTY observable only emits completion. Replace with your own observable stream */
+          tap(() => {
+            alert("Ya existe una categoria con este nombre");
+          }));
+    }, { dispatch: false });
+
     deleteUser$ = createEffect(() => {
       return this.actions$.pipe(
           ofType(appActions.deleteUser),
           switchMap(({id}) =>
             this.appService.deleteUser(id).pipe(
-              map(data => appActions.deleteUserSuccess({ data })),
+              map(data => {
+                alert("Usuario eliminado con éxito");
+                return appActions.deleteUserSuccess({ data })
+              }),
               catchError(error => of(appActions.deleteUserFailure({ error }))))
             ),
       );
@@ -161,7 +204,7 @@ export class AppEffects {
           ofType(appActions.deleteTickets),
           switchMap(({id}) =>
             this.appService.deleteTickets(id).pipe(
-              map(data => appActions.deleteTicketsSuccess({ data })),
+              map(data => {alert("Ticket eliminado con éxito"); return appActions.deleteTicketsSuccess({ data })}),
               catchError(error => of(appActions.deleteTicketsFailure({ error }))))
             ),
       );
@@ -172,7 +215,7 @@ export class AppEffects {
           ofType(appActions.deleteCategorias),
           switchMap(({id}) =>
             this.appService.deleteCategorias(id).pipe(
-              map(data => appActions.deleteCategoriasSuccess({ data })),
+              map(data => {alert("Categoria eliminada con éxito"); return appActions.deleteCategoriasSuccess({ data })}),
               catchError(error => of(appActions.deleteCategoriasFailure({ error }))))
             ),
       );

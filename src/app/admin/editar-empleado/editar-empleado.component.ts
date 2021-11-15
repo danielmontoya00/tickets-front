@@ -15,14 +15,14 @@ import { AppState } from 'src/app/store/app.store';
 export class EditarEmpleadoComponent implements OnInit {
   id:any;
   updateUserForm: FormGroup;
-  empleados: Empleado[];
+  empleado: Empleado;
   subscripcion: Subscription;
 
 
-  constructor( 
+  constructor(
     private fb: FormBuilder,
-    private store: Store<AppState>, 
-    private activeRoute:ActivatedRoute) 
+    private store: Store<AppState>,
+    private activeRoute:ActivatedRoute)
     {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
     console.log(this.id)
@@ -30,27 +30,37 @@ export class EditarEmpleadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscripcion = this.store.select('app').subscribe((x) => {
-      this.empleados = x.empleados.filter(id => id.id === Number(this.id));
-      console.log(this.empleados)
+      this.empleado = <Empleado>x.empleados.find(id => id.id === Number(this.id));
     });
     this.updateUserForm = this.fb.group({
-      user: [this.empleados[0].username],
-      email: [this.empleados[0].email],
-      pass: ['123456']
+      user: [this.empleado.username, [Validators.required]],
+      email: [this.empleado.email, [Validators.required]],
+      pass: ['']
     });
   }
 
   onSubmit(){
     if(this.updateUserForm.valid){
-      this.store.dispatch(appActions.updateUser({
-        id: this.id,
-        username: this.updateUserForm.value.user,
-        email: this.updateUserForm.value.email,
-        password: this.updateUserForm.value.pass,
-      }))
-      alert("correcto")
+      if(this.updateUserForm.value.password === '') {
+        this.store.dispatch(appActions.updateUser({
+          id: this.id,
+          username: this.updateUserForm.value.user,
+          email: this.updateUserForm.value.email
+        }))
+      } else {
+        this.store.dispatch(appActions.updateUser({
+          id: this.id,
+          username: this.updateUserForm.value.user,
+          email: this.updateUserForm.value.email,
+          password: this.updateUserForm.value.pass,
+        }))
+      }
     }else {
-      console.log(this.updateUserForm)} 
+      for (const i in this.updateUserForm.controls) {
+        this.updateUserForm.controls[i].setValue(this.updateUserForm.controls[i].value);
+        this.updateUserForm.controls[i].markAsTouched();
+      }
+    }
   }
 }
 

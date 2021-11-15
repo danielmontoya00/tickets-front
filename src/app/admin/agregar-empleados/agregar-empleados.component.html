@@ -14,15 +14,22 @@
         <div class="container-fluid">
             <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
                 <label class="form-label">Nombre</label>
-                <input type="text" formControlName="user" class="form-control">
+                <input type="text" placeholder="Nombre" formControlName="user" class="form-control">
+                <app-print-error [control]="addUserForm.controls['user']"></app-print-error>
                 <label class="form-label">Correo</label>
-                <input type="email" class="form-control" formControlName="email">
+                <input type="email" placeholder="Correo" class="form-control" formControlName="email">
+                <app-print-error [control]="addUserForm.controls['email']"></app-print-error>
                 <label class="form-label">Contraseña</label>
-                <input type="password" class="form-control" formControlName="pass"><br>
+                <input type="password" placeholder="Contraseña" class="form-control" formControlName="pass">
+                <app-print-error [control]="addUserForm.controls['pass']"></app-print-error><br>
+                <label class="form-label">Rol</label><br>
                 <select formControlName="role">
+                    <option value="">Seleccionar un rol...</option>
                     <option value="3">Empleado</option>
                     <option value="1">Administrador</option>
                 </select><br><br>
+
+                <app-print-error [control]="addUserForm.controls['role']"></app-print-error>
                 <input type="submit" nombre="" class="btn btn-dark" name="Agregar">
             </form>
         </div>

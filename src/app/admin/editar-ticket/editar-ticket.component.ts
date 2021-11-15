@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Categoria } from 'src/models/Categoria.model';
@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Ticket } from 'src/models/Ticket.model';
 import { AppState } from 'src/app/store/app.store';
 import { getCategorias, getUser, updateTicket } from 'src/app/store/actions/app.actions';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-editar-ticket',
@@ -16,17 +17,17 @@ import { getCategorias, getUser, updateTicket } from 'src/app/store/actions/app.
 })
 export class EditarTicketComponent implements OnInit {
   id:any;
-  tickets: Ticket[];
+  ticket: Ticket;
   categorias: Categoria[];
   subscripcion: Subscription;
   empleados: Empleado[];
   updateTicketForm: FormGroup;
 
   constructor(
-    private store: Store<AppState>, 
+    private store: Store<AppState>,
     private fb:FormBuilder,
     private activeRoute: ActivatedRoute
-    ) { 
+    ) {
       this.id = this.activeRoute.snapshot.paramMap.get('id');
     }
 
@@ -34,17 +35,18 @@ export class EditarTicketComponent implements OnInit {
     this.subscripcion = this.store.select('app').subscribe((x) => {
       this.categorias = x.categorias;
       this.empleados = x.empleados;
-      this.tickets = x.tickets.filter(id => id.id === Number(this.id));
+      this.ticket = <Ticket>x.tickets.find(id => id.id === Number(this.id));
     });
     this.store.dispatch(getCategorias());
     this.store.dispatch(getUser());
-    console.log(this.tickets[0])
+    console.log(moment(this.ticket.fechaLimite).format("YYYY-MM-DDTHH:mm"))
+
     this.updateTicketForm=this.fb.group({
-      descripcion: [this.tickets[0].descripcion],
-      date: [this.tickets[0].fechaLimite],
-      estado: [this.tickets[0].estado],
-      categoria:[this.tickets[0].categoria.id],
-      usr:[]
+      descripcion: [this.ticket.descripcion, [Validators.required]],
+      date: [moment(this.ticket.fechaLimite).format("YYYY-MM-DDTHH:mm")/*'2021-12-04T02:36'*/, [Validators.required]],
+      estado: [this.ticket.estado, [Validators.required]],
+      categoria:[this.ticket.categoria.id, [Validators.required]],
+      usr:[this.ticket.user.id, [Validators.required]]
     });
   }
 
@@ -63,7 +65,11 @@ export class EditarTicketComponent implements OnInit {
         user: this.updateTicketForm.value.usr
       }))
   }  else{
-    console.log(this.updateTicketForm)}
+    for (const i in this.updateTicketForm.controls) {
+        this.updateTicketForm.controls[i].setValue(this.updateTicketForm.controls[i].value);
+        this.updateTicketForm.controls[i].markAsTouched();
+      }
+    }
   }
 
 }

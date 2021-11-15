@@ -14,23 +14,28 @@
             <form [formGroup]="addTicketForm" (ngSubmit)="onSubmit()">
                 <label class="form-label">Descripcion</label>
                 <input type="text" formControlName="descripcion" class="form-control">
+                <app-print-error [control]="addTicketForm.controls['descripcion']"></app-print-error>
                 <label class="form-label">Fecha Limite</label>
                 <input type="datetime-local" class="form-control" formControlName="date">
+                <app-print-error [control]="addTicketForm.controls['date']"></app-print-error>
                 <label class="form-label">Estado</label><br>
                 <select formControlName="estado">
+                    <option [selected]="true" value="asignado">asignado</option>
                     <option value="completado">completado</option>
-                    <option value="asignado">asignado</option>
                     <option value="creado">creado</option>
                 </select><br>
+                <app-print-error [control]="addTicketForm.controls['estado']"></app-print-error>
                 <label class="form-label">Categoria</label><br>
                 <select formControlName="categoria">
                     <option *ngFor="let categoria of categorias" value={{categoria.id}}>{{categoria.nombre}}</option>
                 </select><br>
+                <app-print-error [control]="addTicketForm.controls['categoria']"></app-print-error>
                 <label class="form-label">Empleado</label><br>
                 <select formControlName="usr">
                     <option *ngFor="let empleado of empleados" value={{empleado.id}} aria-placeholder="">
                         {{empleado.username}}</option>
                 </select><br><br>
+                <app-print-error [control]="addTicketForm.controls['usr']"></app-print-error>
                 <input type="submit" nombre="" class="btn btn-dark" name="Agregar">
             </form>
         </div>
