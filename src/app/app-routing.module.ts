@@ -14,10 +14,6 @@ const routes: Routes = [
 		redirectTo: "auth",
 		pathMatch: "full"
 	},
-	// {
-	// 	path: "**",
-	// 	redirectTo: "auth",
-	// },
   {
     path: 'client',
     loadChildren: () => import('./client/client.module').then(m => m.ClientModule),
@@ -42,7 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

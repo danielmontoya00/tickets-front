@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  servidor: "http://34.72.158.245:1337"
+  servidor: "https://cool-splice-330819.wn.r.appspot.com"
 };
